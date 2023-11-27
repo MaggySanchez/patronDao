@@ -12,7 +12,7 @@ public class Main {
         PacienteService service= new PacienteService();
         service.setPacienteDao(new PacientesDaoH2());
        // service.buscarPaciente(12345678L);
-        service.crearPaciente(new Paciente("a","b",56789123L));
+        service.crearPaciente(new Paciente("a","b",67891234L));
         service.listarPacientes();
     }
 }

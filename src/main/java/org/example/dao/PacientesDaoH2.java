@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.model.Paciente;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PacientesDaoH2 implements IPacienteDao<Paciente>{
@@ -107,15 +108,15 @@ public class PacientesDaoH2 implements IPacienteDao<Paciente>{
     @Override
     public List<Paciente> listarTodos() {
         Connection con;
-        List<Paciente> pacientes;
+        List<Paciente> pacientes = new ArrayList<>();
         try {
             con = getConnection();
             String getAll = "SELECT * FROM PACIENTES;";
             PreparedStatement pstm = con.prepareStatement(getAll);
             ResultSet result = pstm.executeQuery();
-            System.out.println(result);
 
             while (result.next()) {
+                pacientes.add(buscar(result.getLong(1)));
             }
 
 
@@ -125,6 +126,6 @@ public class PacientesDaoH2 implements IPacienteDao<Paciente>{
             throw new RuntimeException(e);
         }
 
-        return null;
+        return pacientes;
     }
 }
